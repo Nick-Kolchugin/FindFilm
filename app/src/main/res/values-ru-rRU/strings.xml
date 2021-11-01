@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FindFilm</string>
+    <string name="menu">Меню</string>
+    <string name="settings">Настройки</string>
+    <string name="favorite">Избранное</string>
+    <string name="catalog">Каталог</string>
+    <string name="watch_later">Посмотреть позже</string>
+    <string name="disclaimier">Постеры предоставлены https://www.movieposters.com</string>
+</resources>
