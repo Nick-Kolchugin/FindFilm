@@ -4,29 +4,50 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btn_menu = findViewById<Button>(R.id.btn_menu).setOnClickListener{
+        val top_app_bar = findViewById<MaterialToolbar>(R.id.top_app_bar)
+        val nav_tool_bar = findViewById<BottomNavigationView>(R.id.bottom_nav_bar)
+
+        top_app_bar.setNavigationOnClickListener {
             Toast.makeText(this, R.string.menu, Toast.LENGTH_SHORT).show()
         }
-        val btn_catalog = findViewById<Button>(R.id.btn_catalog).setOnClickListener{
-            Toast.makeText(this, R.string.catalog, Toast.LENGTH_SHORT).show()
-        }
-        val btn_watch_later = findViewById<Button>(R.id.btn_watch_later).setOnClickListener{
-            Toast.makeText(this, R.string.watch_later, Toast.LENGTH_SHORT).show()
-        }
-        val btn_favorite = findViewById<Button>(R.id.btn_favorite).setOnClickListener{
-            Toast.makeText(this, R.string.favorite, Toast.LENGTH_SHORT).show()
-        }
-        val btn_settings = findViewById<Button>(R.id.btn_settings).setOnClickListener{
-            Toast.makeText(this, R.string.settings, Toast.LENGTH_SHORT).show()
+        top_app_bar.setOnMenuItemClickListener {
+            when (it.itemId){
+                R.id.top_bar_settings -> {
+                    Toast.makeText(this, R.string.settings, Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> false
+            }
         }
 
+        nav_tool_bar.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_favorite -> {
+                    Toast.makeText(this, R.string.favorite, Toast.LENGTH_SHORT).show()
+                    true
+                }
 
+                R.id.nav_catalog -> {
+                    Toast.makeText(this, R.string.catalog, Toast.LENGTH_SHORT).show()
+                    true
+                }
+
+                R.id.nav_watch_later -> {
+                    Toast.makeText(this, R.string.watch_later, Toast.LENGTH_SHORT).show()
+                    true
+                }
+
+                else -> false
+            }
+        }
 
     }
 }

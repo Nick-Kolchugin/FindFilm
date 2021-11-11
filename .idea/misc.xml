@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/N1n0R/AndroidStudioProjects/FindFilm/app/src/main/res/drawable/ic_round_collections_24.xml" value="0.2703125" />
         <entry key="..\:/Users/N1n0R/AndroidStudioProjects/FindFilm/app/src/main/res/drawable/menu_background.xml" value="0.2703125" />
         <entry key="..\:/Users/N1n0R/AndroidStudioProjects/FindFilm/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/N1n0R/AndroidStudioProjects/FindFilm/app/src/main/res/menu/nav_tool_bar_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/N1n0R/AndroidStudioProjects/FindFilm/app/src/main/res/menu/top_app_bar_main.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>
