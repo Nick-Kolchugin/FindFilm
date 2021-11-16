@@ -2,8 +2,8 @@ package com.example.findfilm
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -12,13 +12,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val top_app_bar = findViewById<MaterialToolbar>(R.id.top_app_bar)
-        val nav_tool_bar = findViewById<BottomNavigationView>(R.id.bottom_nav_bar)
+        val topAppBar = findViewById<MaterialToolbar>(R.id.top_app_bar)
+        val navToolBar = findViewById<BottomNavigationView>(R.id.bottom_nav_bar)
 
-        top_app_bar.setNavigationOnClickListener {
+        topAppBar.setNavigationOnClickListener {
             Toast.makeText(this, R.string.menu, Toast.LENGTH_SHORT).show()
         }
-        top_app_bar.setOnMenuItemClickListener {
+        topAppBar.setOnMenuItemClickListener {
             when (it.itemId){
                 R.id.top_bar_settings -> {
                     Toast.makeText(this, R.string.settings, Toast.LENGTH_SHORT).show()
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        nav_tool_bar.setOnItemSelectedListener {
+        navToolBar.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_favorite -> {
                     Toast.makeText(this, R.string.favorite, Toast.LENGTH_SHORT).show()

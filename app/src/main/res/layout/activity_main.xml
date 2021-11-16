@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/menu_background">
+    android:background="@drawable/menu_background"
+    tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/container_top_app_bar"
@@ -18,17 +18,19 @@
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             app:menu="@menu/top_app_bar_main"
+            app:navigationIcon="@drawable/ic_round_menu_24"
             app:title="@string/app_name"
-            app:titleTextColor="@color/white"
-            app:navigationIcon="@drawable/ic_round_menu_24"/>
+            app:titleTextColor="@color/white" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/upper_container"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="15dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,8 +38,8 @@
         app:layout_constraintTop_toBottomOf="@id/container_top_app_bar">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
             android:background="@color/teal_200"
             android:orientation="horizontal"
             android:weightSum="100">
@@ -68,6 +70,7 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
+        android:id="@+id/disclaimer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autoLink="web"
@@ -76,15 +79,94 @@
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@id/upper_container" />
 
+
+    <GridLayout
+        android:id="@+id/poster_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:layoutAnimation="@anim/poster_container_start_animation"
+        android:orientation="horizontal"
+        android:useDefaultMargins="true"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/disclaimer">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/poster_in_grid_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:stateListAnimator="@animator/posters_animation"
+            app:cardCornerRadius="15dp"
+            android:clickable="true"
+            app:cardElevation="@dimen/poster_elevation">
+
+            <ImageView
+                android:layout_width="@dimen/poster_in_grid_width"
+                android:layout_height="@dimen/poster_in_grid_height"
+                android:scaleType="centerCrop"
+                android:src="@drawable/jaws" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/poster_in_grid_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:stateListAnimator="@animator/posters_animation"
+            app:cardCornerRadius="15dp"
+            android:clickable="true"
+            app:cardElevation="@dimen/poster_elevation">
+
+            <ImageView
+                android:layout_width="@dimen/poster_in_grid_width"
+                android:layout_height="@dimen/poster_in_grid_height"
+                android:scaleType="centerCrop"
+                android:src="@drawable/little_mermaid" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/poster_in_grid_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:stateListAnimator="@animator/posters_animation"
+            app:cardCornerRadius="15dp"
+            android:clickable="true"
+            app:cardElevation="@dimen/poster_elevation">
+
+            <ImageView
+                android:layout_width="@dimen/poster_in_grid_width"
+                android:layout_height="@dimen/poster_in_grid_height"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ready_player_one" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/poster_in_grid_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:stateListAnimator="@animator/posters_animation"
+            app:cardCornerRadius="15dp"
+            android:clickable="true"
+            app:cardElevation="@dimen/poster_elevation">
+
+            <ImageView
+                android:layout_width="@dimen/poster_in_grid_width"
+                android:layout_height="@dimen/poster_in_grid_height"
+                android:scaleType="centerCrop"
+                android:src="@drawable/terminator" />
+        </androidx.cardview.widget.CardView>
+    </GridLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/nav_tool_bar_main"
         android:background="@color/MyColorPrimary"
-        app:itemTextColor="@color/white"
         app:itemIconTint="@color/white"
-        app:labelVisibilityMode="labeled"/>
+        app:itemTextColor="@color/white"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/nav_tool_bar_main" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
