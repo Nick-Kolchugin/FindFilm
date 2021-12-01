@@ -26,14 +26,7 @@
     <string name="cruella_desc">A live-action prequel feature film following a young Cruella de Vil.</string>
     <string name="mortal_kombat_title">Mortal Combat</string>
     <string name="mortal_kombat_desc">MMA fighter Cole Young seeks out Earth\'s greatest champions in order to stand against the enemies of Outworld in a high stakes battle for the universe.</string>
-    <string name="title_activity_details">DetailsActivity</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="details_add_in">Add in</string>
+    <string name="title_activity_details">what is it</string>
 
 </resources>
