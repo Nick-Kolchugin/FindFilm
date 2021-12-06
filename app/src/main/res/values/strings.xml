@@ -28,5 +28,7 @@
     <string name="mortal_kombat_desc">MMA fighter Cole Young seeks out Earth\'s greatest champions in order to stand against the enemies of Outworld in a high stakes battle for the universe.</string>
     <string name="details_add_in">Add in</string>
     <string name="title_activity_details">what is it</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
