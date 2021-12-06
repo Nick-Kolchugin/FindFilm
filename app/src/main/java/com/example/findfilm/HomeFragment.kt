@@ -39,14 +39,14 @@ class HomeFragment : Fragment() {
             Film(getString(R.string.mortal_kombat_title), R.drawable.mortal_kombat_poster, getString(R.string.mortal_kombat_desc)),
         )
         val mainRecycler = view.findViewById<RecyclerView>(R.id.main_recycler_view)
-        filmsAdapter = FilmListRecyclerAdapter(object: FilmListRecyclerAdapter.OnClickListener{
-            override fun click(film: Film) {
-                (requireContext() as MainActivity).launchDetailsFragment(film)
-            }
-        })
 
         mainRecycler.apply {
 
+            filmsAdapter = FilmListRecyclerAdapter(object: FilmListRecyclerAdapter.OnClickListener{
+                override fun click(film: Film) {
+                    (requireContext() as MainActivity).launchDetailsFragment(film)
+                }
+            })
 
             adapter = filmsAdapter
 
