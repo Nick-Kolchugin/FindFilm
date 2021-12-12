@@ -1,6 +1,5 @@
 package com.example.findfilm
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +19,7 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         //ВНИМАНИЕ тут нужно всегда заменять на похожее надувание
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return inflater.inflate(R.layout.fragment_details, container, false)
     }
 
 
@@ -31,7 +30,6 @@ class DetailsFragment : Fragment() {
         val title = view.findViewById<Toolbar>(R.id.details_toolbar)
         val poster = view.findViewById<ImageView>(R.id.details_poster)
         val description = view.findViewById<TextView>(R.id.details_description)
-        val container = view.findViewById<CoordinatorLayout>(R.id.details_container)
 
         //получаем наш фильм через переданный бандл
         val film = arguments?.get("film") as Film
@@ -45,5 +43,7 @@ class DetailsFragment : Fragment() {
         //устанавливаем описание
         description.text = film.description
     }
+
+
 
 }

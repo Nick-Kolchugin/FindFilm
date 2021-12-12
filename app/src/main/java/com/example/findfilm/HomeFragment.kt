@@ -47,7 +47,6 @@ class HomeFragment : Fragment() {
                     (requireContext() as MainActivity).launchDetailsFragment(film)
                 }
             })
-
             adapter = filmsAdapter
 
             layoutManager = LinearLayoutManager(requireContext())

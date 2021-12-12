@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.FindFilmTheme" parent="Theme.MaterialComponents.Light">
+    <style name="Theme.FindFilmTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/MyColorPrimaryNight</item>
         <item name="colorPrimaryDark">@color/MyColorPrimaryDark</item>
         <item name="colorAccent">@color/MyColorAccentNight</item>

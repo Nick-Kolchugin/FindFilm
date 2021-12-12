@@ -1,6 +1,7 @@
 package com.example.findfilm
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.findfilm.model.Film
@@ -8,6 +9,8 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var topAppBar: MaterialToolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +22,7 @@ class MainActivity : AppCompatActivity() {
             .addToBackStack(null)
             .commit()
 
-        val topAppBar = findViewById<MaterialToolbar>(R.id.top_app_bar)
+        topAppBar = findViewById<MaterialToolbar>(R.id.top_app_bar)
         val navToolBar = findViewById<BottomNavigationView>(R.id.bottom_nav_bar)
 
 
@@ -76,4 +79,5 @@ class MainActivity : AppCompatActivity() {
             .addToBackStack(null)
             .commit()
     }
+
 }
