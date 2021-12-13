@@ -11,6 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
 
     lateinit var topAppBar: MaterialToolbar
+    val favoritesDB = FavoritesDB()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager
             .beginTransaction()
             .add(R.id.fragment_placeholder, HomeFragment())
-            .addToBackStack(null)
+            //.addToBackStack(null)
             .commit()
 
         topAppBar = findViewById<MaterialToolbar>(R.id.top_app_bar)
@@ -43,7 +44,11 @@ class MainActivity : AppCompatActivity() {
         navToolBar.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_favorite -> {
-                    Toast.makeText(this, R.string.favorite, Toast.LENGTH_SHORT).show()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.fragment_placeholder, FavoritesFragment())
+                        .addToBackStack(null)
+                        .commit()
                     true
                 }
 
