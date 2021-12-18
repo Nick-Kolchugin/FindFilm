@@ -6,67 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/upper_container"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_film_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="120dp"
-            android:background="@color/teal_200"
-            android:orientation="horizontal"
-            android:weightSum="100">
-
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="33"
-                android:scaleType="centerCrop"
-                android:src="@drawable/avengers_end_game_poster" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="33"
-                android:scaleType="centerCrop"
-                android:src="@drawable/back_to_the_future_poster" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="33"
-                android:scaleType="centerCrop"
-                android:src="@drawable/once_upon_the_time_in_hollywood_poster" />
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/disclaimer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autoLink="web"
-        android:linksClickable="true"
-        android:text="@string/disclaimier"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@id/upper_container" />
+        android:background="@drawable/background_shape_view"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="8dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="16dp"
-        app:layout_constraintTop_toBottomOf="@id/disclaimer"
+        app:layout_constraintTop_toBottomOf="@id/search_film_view"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

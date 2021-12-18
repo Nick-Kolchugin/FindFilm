@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.findfilm.model.Film
 import com.example.findfilm.model.FilmListRecyclerAdapter
+import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -38,6 +40,35 @@ class HomeFragment : Fragment() {
             Film(getString(R.string.cruella_title), R.drawable.cruella_poster, getString(R.string.cruella_desc)),
             Film(getString(R.string.mortal_kombat_title), R.drawable.mortal_kombat_poster, getString(R.string.mortal_kombat_desc)),
         )
+
+        val searchFilmView = view.findViewById<SearchView>(R.id.search_film_view)
+        searchFilmView.setOnClickListener{
+            searchFilmView.isIconified = false
+        }
+        //подключаем слушателя изменений введеного текста
+        searchFilmView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            //этот метод отрабатывает кнопку поиск на клавиатуре
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                TODO("Not yet implemented")
+            }
+            //этот метод обрабатывает на каждое изменение текста
+            override fun onQueryTextChange(newText: String?): Boolean {
+                //если ввод пустой то вставляем в адаптер всю бд
+                if(newText?.isEmpty()== true){
+                    filmsAdapter.addItems(listOfFilms)
+                    return true
+                }
+                //фильтруем список на поиск подходящих сочетаний
+                val result = listOfFilms.filter {
+                    //чтобы все работало правильно нужно и запрос и имя приводить к нижнему регистру
+                    it.title.lowercase(Locale.getDefault()).contains(newText?.lowercase(Locale.getDefault())?:"")//не уверен что так правлильно с элвисом но что поделать
+                }
+                filmsAdapter.addItems(result)
+                return true
+            }
+
+        })
+
         val mainRecycler = view.findViewById<RecyclerView>(R.id.main_recycler_view)
 
         mainRecycler.apply {
