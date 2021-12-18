@@ -6,7 +6,6 @@
     <string name="favorite">Избранное</string>
     <string name="catalog">Каталог</string>
     <string name="watch_later">Посмотреть позже</string>
-    <string name="disclaimier">Постеры предоставлены https://www.movieposters.com</string>
     <string name="shang_chi_title">Шан-Чи и легенда десяти колец</string>
     <string name="shang_chi_desc">Шан-Чи, мастер оружейного кунг-фу, вынужден противостоять своему прошлому после того, как был вовлечен в организацию «Десять колец».</string>
     <string name="freeguy_title">Главный герой</string>
@@ -27,5 +26,4 @@
     <string name="cruella_desc">Живой приквел, рассказывающий о юной Круэлле де Виль.</string>
     <string name="mortal_kombat_title">Мортал Комбат</string>
     <string name="mortal_kombat_desc">Боец ММА Коул Янг ищет величайших чемпионов Земли, чтобы противостоять врагам Внешнего мира в битве за вселенную с высокими ставками.</string>
-    <string name="details_add_in">Добавить в</string>
 </resources>
