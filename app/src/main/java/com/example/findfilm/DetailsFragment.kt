@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.findfilm.model.Film
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -44,7 +45,11 @@ class DetailsFragment : Fragment() {
         title.title = film.title
 
         //устанавливаем постер
-        poster.setImageResource(film.poster)
+        Glide.with(poster)
+            .load(film.poster)
+            .centerCrop()
+            .into(poster)
+//        poster.setImageResource(film.poster) <- старая реализация добаления картинки
 
         //устанавливаем описание
         description.text = film.description

@@ -2,11 +2,17 @@ package com.example.findfilm
 
 import android.content.Intent
 import android.os.Bundle
+import android.transition.Scene
+import android.transition.Slide
+import android.transition.TransitionManager
+import android.transition.TransitionSet
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.findfilm.model.Film
@@ -27,6 +33,25 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val homeFragmentRoot = view.findViewById<ConstraintLayout>(R.id.home_fragment_root)
+
+        val scene = Scene.getSceneForLayout(homeFragmentRoot, R.layout.merge_home_screen_content, requireContext())
+
+        //Анимация въезда поискового поля сверху
+        val searchSlide = Slide(Gravity.TOP).addTarget(R.id.search_film_view)
+        //Анимация выезда recyclerView снизу
+        val recyclerSlide = Slide(Gravity.BOTTOM).addTarget(R.id.main_recycler_view)
+        //Создаем экземпляр TransitionSet, который будет объединять все анимации воедино
+        val customTransition = TransitionSet().apply {
+            //Устанавливаем время за которое будет проходить анимции
+            duration = 500
+            //Добавляем сами анимации
+            addTransition(searchSlide)
+            addTransition(recyclerSlide)
+        }
+        //Запускаем анимацию через TransitionManager, но вторым параметром устанавливаем наш TransitionSet
+        TransitionManager.go(scene, customTransition)
 
         val listOfFilms = listOf(
             Film(getString(R.string.shang_chi_title), R.drawable.shang_chi_poster, getString(R.string.shang_chi_desc)),
