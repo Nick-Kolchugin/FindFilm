@@ -2,8 +2,11 @@ package com.example.findfilm
 
 import android.app.Activity
 import android.os.Bundle
+import android.transition.Slide
+import android.view.Gravity
 import android.view.View
 import android.view.ViewAnimationUtils
+import android.view.Window
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -21,8 +24,15 @@ class MainActivity : AppCompatActivity() {
     val favoritesDB = FavoritesDB()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
+        window.allowEnterTransitionOverlap = true
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        window.enterTransition = Slide(Gravity.END).apply {
+            mode = Slide.MODE_IN
+            excludeTarget(android.R.id.navigationBarBackground, true)
+        }
 
         supportFragmentManager
             .beginTransaction()
@@ -84,6 +94,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 
     fun launchDetailsFragment(film: Film) {
