@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FindFilm</string>
+    <string name="menu">Меню</string>
+    <string name="settings">Настройки</string>
+    <string name="favorite">Избранное</string>
+    <string name="catalog">Каталог</string>
+    <string name="watch_later">Посмотреть позже</string>
+    <string name="shang_chi_title">Шан-Чи и легенда десяти колец</string>
+    <string name="shang_chi_desc">Шан-Чи, мастер оружейного кунг-фу, вынужден противостоять своему прошлому после того, как был вовлечен в организацию «Десять колец».</string>
+    <string name="freeguy_title">Главный герой</string>
+    <string name="freeguy_desc">Кассир в банке обнаруживает, что он на самом деле NPC в жестокой видеоигре с открытым миром.</string>
+    <string name="dune_part1_title">Дюна: Часть первая</string>
+    <string name="dune_part1_desc">Экранизация научно-фантастического романа Фрэнка Герберта о сыне из знатной семьи, которому поручено охранять самый ценный актив и самый важный элемент в галактике.</string>
+    <string name="house_of_gucci_title">Дом Gucci</string>
+    <string name="house_of_gucci_desc">Когда Патриция Реджиани, оступница со скромным началом, выходит замуж за семью Гуччи, ее безудержные амбиции начинают разрушать их наследие и запускают безрассудную спираль предательства, упадка, мести и, в конечном счете ... убийства.</string>
+    <string name="venom2_title">Веном 2</string>
+    <string name="venom2_desc">Эдди Брок пытается возродить свою карьеру, взяв интервью у серийного убийцы Клетуса Кэсэди, который становится хозяином Симбиота Карнажа и сбегает из тюрьмы после неудавшейся казни.</string>
+    <string name="ghostbusters_afterlife_title">Охотники за привидениями: Наследники</string>
+    <string name="ghostbusters_afterlife_desc">Когда мать-одиночка и двое ее детей приезжают в маленький городок, они начинают замечать свою связь с первыми «Охотниками за привидениями» и секретное наследие, оставленное их дедом.</string>
+    <string name="last_night_in_soho_title">Прошлой ночью в Сохо</string>
+    <string name="last_night_in_soho_desc">Начинающий модельер таинственным образом может попасть в 1960-е, где она встречает великолепную певицу-подражателя. Но гламур - это еще не все, чем она кажется, и мечты прошлого начинают раскалываться и превращаться во что-то более темное.</string>
+    <string name="no_time_to_die_title">Не время умирать</string>
+    <string name="no_time_to_die_desc">Джеймс Бонд оставил активную службу. Его покой недолговечен, когда Феликс Лейтер, старый друг из ЦРУ, появляется с просьбой о помощи, ведя Бонда на след таинственного злодея, вооруженного опасными новыми технологиями.</string>
+    <string name="cruella_title">Круэлла</string>
+    <string name="cruella_desc">Живой приквел, рассказывающий о юной Круэлле де Виль.</string>
+    <string name="mortal_kombat_title">Мортал Комбат</string>
+    <string name="mortal_kombat_desc">Боец ММА Коул Янг ищет величайших чемпионов Земли, чтобы противостоять врагам Внешнего мира в битве за вселенную с высокими ставками.</string>
+    <string name="main_screen">Главный экран</string>
+</resources>
