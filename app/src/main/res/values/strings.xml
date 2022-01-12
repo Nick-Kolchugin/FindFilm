@@ -25,6 +25,6 @@
     <string name="cruella_desc">A live-action prequel feature film following a young Cruella de Vil.</string>
     <string name="mortal_kombat_title">Mortal Combat</string>
     <string name="mortal_kombat_desc">MMA fighter Cole Young seeks out Earth\'s greatest champions in order to stand against the enemies of Outworld in a high stakes battle for the universe.</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="main_screen">Main screen</string>
 
 </resources>

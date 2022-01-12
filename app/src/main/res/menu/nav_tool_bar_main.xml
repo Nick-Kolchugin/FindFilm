@@ -7,6 +7,11 @@
         android:title="@string/favorite"
         app:showAsAction="ifRoom"/>
     <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/main_screen"
+        app:showAsAction="ifRoom"/>
+    <item
         android:id="@+id/nav_catalog"
         android:icon="@drawable/ic_round_video_library_24"
         android:title="@string/catalog"

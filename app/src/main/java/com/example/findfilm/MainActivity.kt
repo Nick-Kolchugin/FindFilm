@@ -1,12 +1,19 @@
 package com.example.findfilm
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.View
+import android.view.ViewAnimationUtils
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.findfilm.model.Film
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.concurrent.Executors
+import kotlin.math.hypot
+import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.fragment_placeholder, HomeFragment())
+            .add(R.id.fragment_placeholder, HomeFragment(), "home")
             //.addToBackStack(null)
             .commit()
 
@@ -32,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, R.string.menu, Toast.LENGTH_SHORT).show()
         }
         topAppBar.setOnMenuItemClickListener {
-            when (it.itemId){
+            when (it.itemId) {
                 R.id.top_bar_settings -> {
                     Toast.makeText(this, R.string.settings, Toast.LENGTH_SHORT).show()
                     true
@@ -44,21 +51,32 @@ class MainActivity : AppCompatActivity() {
         navToolBar.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_favorite -> {
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.fragment_placeholder, FavoritesFragment())
-                        .addToBackStack(null)
-                        .commit()
+                    val tag = "favorite"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment(fragment ?: FavoritesFragment(), tag)
+                    true
+                }
+
+                R.id.nav_home -> {
+                    val tag = "home"
+                    val fragment = checkFragmentExistence(tag)
+                    //В первом параметре, если фрагмент не найден и метод вернул null, то с помощью
+                    // элвиса мы вызываем создание нового фрагмента
+                    changeFragment(fragment ?: HomeFragment(), tag)
                     true
                 }
 
                 R.id.nav_catalog -> {
-                    Toast.makeText(this, R.string.catalog, Toast.LENGTH_SHORT).show()
+                    val tag = "selections"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment(fragment ?: SelectionsFragment(), tag)
                     true
                 }
 
                 R.id.nav_watch_later -> {
-                    Toast.makeText(this, R.string.watch_later, Toast.LENGTH_SHORT).show()
+                    val tag = "watch_later"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment(fragment ?: WatchLaterFragment(), tag)
                     true
                 }
 
@@ -68,7 +86,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun launchDetailsFragment(film: Film){
+    fun launchDetailsFragment(film: Film) {
         //создаем посылку
         val bundle = Bundle()
         //кладем наш фильм в посылку
@@ -83,6 +101,69 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.fragment_placeholder, fragment)
             .addToBackStack(null)
             .commit()
+    }
+
+    //ищем фрагмент по теу, если он есть возвращаем его, если нет то null
+    private fun checkFragmentExistence(tag: String): Fragment? =
+        supportFragmentManager.findFragmentByTag(tag)
+
+    //функция запуска фрагмента
+    private fun changeFragment(fragment: Fragment, tag: String) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_placeholder, fragment, tag)
+            //.addToBackStack(null)
+            .commit()
+    }
+
+    object AnimationHelper {
+        //Это переменная для того, чтобы круг проявления расходился именно от иконки меню навигации
+        private const val menuItems = 4
+
+        //В метод у нас приходит 3 параметра:
+        //1 - наше rootView, которое одновременно является и контейнером
+        //и объектом анимации
+        //2 - активити для того, чтобы вернуть выполнение нового треда в UI поток
+        //3 - позиция в меню навигации, чтобы круг проявления расходился именно от иконки меню навигации
+        fun performFragmentCircularRevealAnimation(
+            rootView: View,
+            activity: Activity,
+            position: Int
+        ) {
+            //Создаем новый тред
+            Executors.newSingleThreadExecutor().execute {
+                //в бесконечном цикле проверяем, когда наше анимированное view будет прикреплено к экрану
+                while (true) {
+                    //когда оно будет прикреплено, выполним код
+                    if (rootView.isAttachedToWindow) {
+                        //Возвращаемся в главный тред, чтобы выполнить анимацию
+                        activity.runOnUiThread {
+                            //суперсложная математика вычисления старта анимации
+                            val itemCenter = rootView.width / (menuItems * 2)
+                            val step = (itemCenter * 2) * (position - 1) + itemCenter
+
+                            val x: Int = step
+                            val y: Int = rootView.y.roundToInt() + rootView.height
+
+                            val startRadius = 0
+                            val endRadius = hypot(rootView.width.toDouble(), rootView.height.toDouble())
+                            //создаем саму анимацию
+                            ViewAnimationUtils.createCircularReveal(rootView, x, y, startRadius.toFloat(), endRadius.toFloat()).apply {
+                                //Устанавливаем время анимации
+                                duration = 500
+                                //интерполятор для более естественной анимации
+                                interpolator = AccelerateDecelerateInterpolator()
+                                //запуск
+                                start()
+                            }
+                            //выставляем видимость нашего элемента
+                            rootView.visibility = View.VISIBLE
+                        }
+                        return@execute
+                    }
+                }
+            }
+        }
     }
 
 }

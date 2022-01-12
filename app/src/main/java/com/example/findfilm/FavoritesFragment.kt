@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.FrameLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.findfilm.model.Film
@@ -30,6 +32,9 @@ class FavoritesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val favoritesFragmentRoot = view.findViewById<FrameLayout>(R.id.favorites_fragment_root)
+        MainActivity.AnimationHelper.performFragmentCircularRevealAnimation(favoritesFragmentRoot, requireActivity(), 1)
 
         val favoritesRecycler = view.findViewById<RecyclerView>(R.id.favorites_recycler_view)
         val favoritesList = (requireActivity() as MainActivity).favoritesDB.getFavoriteList()
