@@ -9,4 +9,10 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'*/
 
 @Parcelize
-data class Film(val title: String, val poster: Int, val description: String, var isInFavorites: Boolean = false):Parcelable
+data class Film(
+    val title: String,
+    val poster: Int,
+    val description: String,
+    var rating: Float = 0f,
+    var isInFavorites: Boolean = false
+) : Parcelable

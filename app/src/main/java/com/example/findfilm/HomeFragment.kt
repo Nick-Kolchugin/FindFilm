@@ -38,16 +38,16 @@ class HomeFragment : Fragment() {
         MainActivity.AnimationHelper.performFragmentCircularRevealAnimation(homeFragmentRoot, requireActivity(), 2)
 
         val listOfFilms = listOf(
-            Film(getString(R.string.shang_chi_title), R.drawable.shang_chi_poster, getString(R.string.shang_chi_desc)),
-            Film(getString(R.string.freeguy_title), R.drawable.freeguy_poster, getString(R.string.freeguy_desc)),
-            Film(getString(R.string.dune_part1_title), R.drawable.dune_poster, getString(R.string.dune_part1_desc)),
-            Film(getString(R.string.house_of_gucci_title), R.drawable.house_of_gucci_poster, getString(R.string.house_of_gucci_desc)),
-            Film(getString(R.string.venom2_title), R.drawable.venom2_poster, getString(R.string.venom2_desc)),
-            Film(getString(R.string.ghostbusters_afterlife_title), R.drawable.ghostbusters_afterlife_poster, getString(R.string.ghostbusters_afterlife_desc)),
-            Film(getString(R.string.last_night_in_soho_title), R.drawable.last_night_in_soho_poster, getString(R.string.last_night_in_soho_desc)),
-            Film(getString(R.string.no_time_to_die_title), R.drawable.no_time_to_die_poster, getString(R.string.no_time_to_die_desc)),
-            Film(getString(R.string.cruella_title), R.drawable.cruella_poster, getString(R.string.cruella_desc)),
-            Film(getString(R.string.mortal_kombat_title), R.drawable.mortal_kombat_poster, getString(R.string.mortal_kombat_desc)),
+            Film(getString(R.string.shang_chi_title), R.drawable.shang_chi_poster, getString(R.string.shang_chi_desc), 7.0f),
+            Film(getString(R.string.freeguy_title), R.drawable.freeguy_poster, getString(R.string.freeguy_desc), 7.4f),
+            Film(getString(R.string.dune_part1_title), R.drawable.dune_poster, getString(R.string.dune_part1_desc), 7.7f),
+            Film(getString(R.string.house_of_gucci_title), R.drawable.house_of_gucci_poster, getString(R.string.house_of_gucci_desc), 7.2f),
+            Film(getString(R.string.venom2_title), R.drawable.venom2_poster, getString(R.string.venom2_desc), 6.1f),
+            Film(getString(R.string.ghostbusters_afterlife_title), R.drawable.ghostbusters_afterlife_poster, getString(R.string.ghostbusters_afterlife_desc), 7.0f),
+            Film(getString(R.string.last_night_in_soho_title), R.drawable.last_night_in_soho_poster, getString(R.string.last_night_in_soho_desc), 6.7f),
+            Film(getString(R.string.no_time_to_die_title), R.drawable.no_time_to_die_poster, getString(R.string.no_time_to_die_desc), 7.1f),
+            Film(getString(R.string.cruella_title), R.drawable.cruella_poster, getString(R.string.cruella_desc), 7.4f),
+            Film(getString(R.string.mortal_kombat_title), R.drawable.mortal_kombat_poster, getString(R.string.mortal_kombat_desc), 6.2f),
         )
 
         val searchFilmView = view.findViewById<SearchView>(R.id.search_film_view)
