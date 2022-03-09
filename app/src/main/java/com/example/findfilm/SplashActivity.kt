@@ -11,26 +11,32 @@ import android.view.Gravity
 import android.view.Window
 import android.widget.Toast
 import com.airbnb.lottie.LottieAnimationView
+import com.example.findfilm.databinding.ActivitySplashBinding
 import kotlinx.coroutines.delay
 import java.util.concurrent.Executors
 
 class SplashActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySplashBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         window.exitTransition = Slide(Gravity.START).apply {
             mode = Slide.MODE_OUT
             excludeTarget(android.R.id.navigationBarBackground, true)
         }
 
-        val splashAnimationView = findViewById<LottieAnimationView>(R.id.splash_animation)
-        splashAnimationView.apply {
+        //Благодря использованию ViewDataBinding нажняя строчка больше не используется
+        //val splashAnimationView = findViewById<LottieAnimationView>(R.id.splash_animation)
+        binding.splashAnimation.apply {
             setAnimation(R.raw.splash_anim)
             playAnimation()
         }
-        splashAnimationView.addAnimatorListener(object : Animator.AnimatorListener{
+        binding.splashAnimation.addAnimatorListener(object : Animator.AnimatorListener{
             override fun onAnimationStart(animation: Animator?) {
 
             }

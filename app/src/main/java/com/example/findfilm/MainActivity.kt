@@ -11,6 +11,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.findfilm.databinding.ActivityMainBinding
 import com.example.findfilm.model.Film
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -19,15 +20,20 @@ import kotlin.math.hypot
 import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
-
-    lateinit var topAppBar: MaterialToolbar
+    //Благодря использованию ViewDataBinding нажняя строчка больше не используется
+    //lateinit var topAppBar: MaterialToolbar
     val favoritesDB = FavoritesDB()
+
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
         window.allowEnterTransitionOverlap = true
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //Инициализируем объект
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        //Передаем его в объект
+        setContentView(binding.root)
 
         window.enterTransition = Slide(Gravity.END).apply {
             mode = Slide.MODE_IN
@@ -39,16 +45,16 @@ class MainActivity : AppCompatActivity() {
             .add(R.id.fragment_placeholder, HomeFragment(), "home")
             //.addToBackStack(null)
             .commit()
+        //Благодря использованию ViewDataBinding нажняя строчка больше не используется
+        //topAppBar = findViewById<MaterialToolbar>(R.id.top_app_bar)
+        //val navToolBar = findViewById<BottomNavigationView>(R.id.bottom_nav_bar)
 
-        topAppBar = findViewById<MaterialToolbar>(R.id.top_app_bar)
-        val navToolBar = findViewById<BottomNavigationView>(R.id.bottom_nav_bar)
 
 
-
-        topAppBar.setNavigationOnClickListener {
+        binding.topAppBar.setNavigationOnClickListener {
             Toast.makeText(this, R.string.menu, Toast.LENGTH_SHORT).show()
         }
-        topAppBar.setOnMenuItemClickListener {
+        binding.topAppBar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.top_bar_settings -> {
                     Toast.makeText(this, R.string.settings, Toast.LENGTH_SHORT).show()
@@ -58,7 +64,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        navToolBar.setOnItemSelectedListener {
+        binding.bottomNavBar.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_favorite -> {
                     val tag = "favorite"

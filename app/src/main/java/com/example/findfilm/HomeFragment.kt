@@ -1,20 +1,15 @@
 package com.example.findfilm
 
-import android.content.Intent
 import android.os.Bundle
-import android.transition.Scene
-import android.transition.Slide
-import android.transition.TransitionManager
-import android.transition.TransitionSet
-import android.view.Gravity
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.findfilm.databinding.FragmentHomeBinding
 import com.example.findfilm.model.Film
 import com.example.findfilm.model.FilmListRecyclerAdapter
 import java.util.*
@@ -22,20 +17,23 @@ import java.util.*
 class HomeFragment : Fragment() {
 
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val homeFragmentRoot = view.findViewById<ConstraintLayout>(R.id.home_fragment_root)
-        MainActivity.AnimationHelper.performFragmentCircularRevealAnimation(homeFragmentRoot, requireActivity(), 2)
+        //Благодря использованию ViewDataBinding нажняя строчка больше не используется
+        //val homeFragmentRoot = view.findViewById<ConstraintLayout>(R.id.home_fragment_root)
+        MainActivity.AnimationHelper.performFragmentCircularRevealAnimation(binding.homeFragmentRoot, requireActivity(), 2)
 
         val listOfFilms = listOf(
             Film(getString(R.string.shang_chi_title), R.drawable.shang_chi_poster, getString(R.string.shang_chi_desc), 7.0f),
@@ -50,12 +48,13 @@ class HomeFragment : Fragment() {
             Film(getString(R.string.mortal_kombat_title), R.drawable.mortal_kombat_poster, getString(R.string.mortal_kombat_desc), 6.2f),
         )
 
-        val searchFilmView = view.findViewById<SearchView>(R.id.search_film_view)
-        searchFilmView.setOnClickListener{
-            searchFilmView.isIconified = false
+        //Благодря использованию ViewDataBinding нажняя строчка больше не используется
+        //val searchFilmView = view.findViewById<SearchView>(R.id.search_film_view)
+        binding.searchFilmView.setOnClickListener{
+            binding.searchFilmView.isIconified = false
         }
         //подключаем слушателя изменений введеного текста
-        searchFilmView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        binding.searchFilmView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             //этот метод отрабатывает кнопку поиск на клавиатуре
             override fun onQueryTextSubmit(query: String?): Boolean {
                 TODO("Not yet implemented")
@@ -78,9 +77,10 @@ class HomeFragment : Fragment() {
 
         })
 
-        val mainRecycler = view.findViewById<RecyclerView>(R.id.main_recycler_view)
+        //Благодря использованию ViewDataBinding нажняя строчка больше не используется
+        //val mainRecycler = view.findViewById<RecyclerView>(R.id.main_recycler_view)
 
-        mainRecycler.apply {
+        binding.mainRecyclerView.apply {
 
             filmsAdapter = FilmListRecyclerAdapter(object: FilmListRecyclerAdapter.OnClickListener{
                 override fun click(film: Film) {
