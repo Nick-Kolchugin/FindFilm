@@ -10,15 +10,20 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.databinding.BaseObservable
+import androidx.databinding.BindingMethod
+import androidx.databinding.BindingMethods
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.findfilm.databinding.FragmentDetailsBinding
 import com.example.findfilm.model.Film
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
+
 class DetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailsBinding
+    private lateinit var film: Film
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,7 +48,7 @@ class DetailsFragment : Fragment() {
         val description = view.findViewById<TextView>(R.id.details_description)*/
 
         //получаем наш фильм через переданный бандл
-        val film = arguments?.get("film") as Film
+        film = arguments?.get("film") as Film
 
         //устанавливаем заголовок
         binding.detailsToolbar.title = film.title
@@ -59,19 +64,19 @@ class DetailsFragment : Fragment() {
         binding.detailsDescription.text = film.description
 
         binding.detailsFabFavorites.setImageResource(
-            if (film.isInFavorites){
+            if (film.isInFavorites) {
                 R.drawable.ic_round_favorite_24
-            } else{
+            } else {
                 R.drawable.ic_round_favorite_border_24
             }
         )
 
         binding.detailsFabFavorites.setOnClickListener {
-            if(!film.isInFavorites){
+            if (!film.isInFavorites) {
                 binding.detailsFabFavorites.setImageResource(R.drawable.ic_round_favorite_24)
                 film.isInFavorites = true
                 (requireActivity() as MainActivity).favoritesDB.addToFavorite(film)
-            } else{
+            } else {
                 binding.detailsFabFavorites.setImageResource(R.drawable.ic_round_favorite_border_24)
                 film.isInFavorites = false
                 (requireActivity() as MainActivity).favoritesDB.delFromFavorites(film)
@@ -93,8 +98,26 @@ class DetailsFragment : Fragment() {
             //запускаем наше активити
             startActivity(Intent.createChooser(intent, "Share to:"))
         }
+
+
+
     }
 
-
+    fun toShare() {
+        //создаем интент
+        val intent = Intent()
+        //указываем action с которым он запускается
+        intent.action = Intent.ACTION_SEND
+        //кладем данные о нашем фильме
+        intent.putExtra(
+            Intent.EXTRA_TEXT,
+            "Check out this film: ${film.title}\n\n${film.description}"
+        )
+        //указываем MIME тип, чтобы система знала, какое приложение предложить
+        intent.type = "text/plain"
+        //запускаем наше активити
+        startActivity(Intent.createChooser(intent, "Share to:"))
+    }
 
 }
+
