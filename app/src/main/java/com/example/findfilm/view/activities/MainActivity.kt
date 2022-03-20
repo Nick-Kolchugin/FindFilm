@@ -1,4 +1,4 @@
-package com.example.findfilm
+package com.example.findfilm.view.activities
 
 import android.app.Activity
 import android.os.Bundle
@@ -11,10 +11,11 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.findfilm.FavoritesDB
+import com.example.findfilm.R
 import com.example.findfilm.databinding.ActivityMainBinding
-import com.example.findfilm.model.Film
-import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.findfilm.domain.Film
+import com.example.findfilm.view.fragments.*
 import java.util.concurrent.Executors
 import kotlin.math.hypot
 import kotlin.math.roundToInt

@@ -1,18 +1,16 @@
-package com.example.findfilm
+package com.example.findfilm.view.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.FrameLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.findfilm.view.rv_adapters.FilmListRecyclerAdapter
+import com.example.findfilm.view.activities.MainActivity
+import com.example.findfilm.view.rv_adapters.TopSpacingItemDecoration
 import com.example.findfilm.databinding.FragmentFavoritesBinding
-import com.example.findfilm.model.Film
-import com.example.findfilm.model.FilmListRecyclerAdapter
+import com.example.findfilm.domain.Film
 
 class FavoritesFragment : Fragment() {
 
@@ -33,14 +31,18 @@ class FavoritesFragment : Fragment() {
 
         //Благодря использованию ViewDataBinding нажняя строчка больше не используется
         //val favoritesFragmentRoot = view.findViewById<FrameLayout>(R.id.favorites_fragment_root)
-        MainActivity.AnimationHelper.performFragmentCircularRevealAnimation(binding.favoritesFragmentRoot, requireActivity(), 1)
+        MainActivity.AnimationHelper.performFragmentCircularRevealAnimation(
+            binding.favoritesFragmentRoot,
+            requireActivity(),
+            1
+        )
 
         //Благодря использованию ViewDataBinding нажняя строчка больше не используется
         //val favoritesRecycler = view.findViewById<RecyclerView>(R.id.favorites_recycler_view)
         val favoritesList = (requireActivity() as MainActivity).favoritesDB.getFavoriteList()
 
         binding.favoritesRecyclerView.apply {
-            filmsAdapter = FilmListRecyclerAdapter(object: FilmListRecyclerAdapter.OnClickListener{
+            filmsAdapter = FilmListRecyclerAdapter(object: FilmListRecyclerAdapter.OnClickListener {
                 override fun click(film: Film) {
                     (requireActivity() as MainActivity).launchDetailsFragment(film)
                 }

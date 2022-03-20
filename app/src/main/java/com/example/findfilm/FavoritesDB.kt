@@ -1,6 +1,6 @@
 package com.example.findfilm
 
-import com.example.findfilm.model.Film
+import com.example.findfilm.domain.Film
 
 class FavoritesDB {
 

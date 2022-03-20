@@ -1,12 +1,12 @@
-package com.example.findfilm.model
+package com.example.findfilm.view.rv_adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ExpandableListView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.findfilm.FilmViewHolder
+import com.example.findfilm.view.rv_viewholders.FilmViewHolder
 import com.example.findfilm.R
+import com.example.findfilm.domain.Film
 
 class FilmListRecyclerAdapter(private val clickListener: OnClickListener): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

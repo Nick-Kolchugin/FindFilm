@@ -5,14 +5,11 @@ import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.transition.Fade
 import android.transition.Slide
 import android.view.Gravity
 import android.view.Window
-import android.widget.Toast
-import com.airbnb.lottie.LottieAnimationView
 import com.example.findfilm.databinding.ActivitySplashBinding
-import kotlinx.coroutines.delay
+import com.example.findfilm.view.activities.MainActivity
 import java.util.concurrent.Executors
 
 class SplashActivity : AppCompatActivity() {

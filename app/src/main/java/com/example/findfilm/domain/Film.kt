@@ -1,4 +1,4 @@
-package com.example.findfilm.model
+package com.example.findfilm.domain
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

@@ -1,4 +1,4 @@
-package com.example.findfilm.model
+package com.example.findfilm.view.customviews
 
 import android.content.Context
 import android.graphics.*

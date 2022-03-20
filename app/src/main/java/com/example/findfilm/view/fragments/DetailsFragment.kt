@@ -1,23 +1,16 @@
-package com.example.findfilm
+package com.example.findfilm.view.fragments
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.appcompat.widget.Toolbar
-import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.databinding.BaseObservable
-import androidx.databinding.BindingMethod
-import androidx.databinding.BindingMethods
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.example.findfilm.view.activities.MainActivity
+import com.example.findfilm.R
 import com.example.findfilm.databinding.FragmentDetailsBinding
-import com.example.findfilm.model.Film
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.findfilm.domain.Film
 
 
 class DetailsFragment : Fragment() {
