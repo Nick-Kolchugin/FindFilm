@@ -22,19 +22,19 @@ class HomeFragment : Fragment() {
 
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
     private lateinit var binding: FragmentHomeBinding
-    private val viewModel by lazy{
+    private val viewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
     }
     private var filmsDataBase = listOf<Film>()
-    //Инициализируем backing field
-    set(value){
-        //Если приходит такое же значение то мы выходим из метода
-        if(field == value) return
-        //Если пришло другое значение то кладем его в переменную
-        field = value
-        //Обновляем RV адаптер
-        filmsAdapter.addItems(field)
-    }
+        //Инициализируем backing field
+        set(value) {
+            //Если приходит такое же значение то мы выходим из метода
+            if (field == value) return
+            //Если пришло другое значение то кладем его в переменную
+            field = value
+            //Обновляем RV адаптер
+            filmsAdapter.addItems(field)
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,7 +57,7 @@ class HomeFragment : Fragment() {
         )
 
         //подписываемся на изменения ViewModel
-        viewModel.filmsListLiveData.observe(viewLifecycleOwner, Observer<List<Film>>{
+        viewModel.filmsListLiveData.observe(viewLifecycleOwner, Observer<List<Film>> {
             filmsDataBase = it
         })
 
@@ -86,43 +86,50 @@ class HomeFragment : Fragment() {
 
         //Благодря использованию ViewDataBinding нажняя строчка больше не используется
         //val searchFilmView = view.findViewById<SearchView>(R.id.search_film_view)
-        binding.searchFilmView.setOnClickListener{
+        binding.searchFilmView.setOnClickListener()
+        {
             binding.searchFilmView.isIconified = false
         }
         //подключаем слушателя изменений введеного текста
-        binding.searchFilmView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            //этот метод отрабатывает кнопку поиск на клавиатуре
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                TODO("Not yet implemented")
-            }
-            //этот метод обрабатывает на каждое изменение текста
-            override fun onQueryTextChange(newText: String?): Boolean {
-                //если ввод пустой то вставляем в адаптер всю бд
-                if(newText?.isEmpty()== true){
-                    filmsAdapter.addItems(filmsDataBase)
+        binding.searchFilmView.setOnQueryTextListener(
+            object : SearchView.OnQueryTextListener {
+                //этот метод отрабатывает кнопку поиск на клавиатуре
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    TODO("Not yet implemented")
+                }
+
+                //этот метод обрабатывает на каждое изменение текста
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    //если ввод пустой то вставляем в адаптер всю бд
+                    if (newText?.isEmpty() == true) {
+                        filmsAdapter.addItems(filmsDataBase)
+                        return true
+                    }
+                    //фильтруем список на поиск подходящих сочетаний
+                    val result = filmsDataBase.filter {
+                        //чтобы все работало правильно нужно и запрос и имя приводить к нижнему регистру
+                        it.title.lowercase(Locale.getDefault()).contains(
+                            newText?.lowercase(Locale.getDefault()) ?: ""
+                        )//не уверен что так правлильно с элвисом но что поделать
+                    }
+                    filmsAdapter.addItems(result)
                     return true
                 }
-                //фильтруем список на поиск подходящих сочетаний
-                val result = filmsDataBase.filter {
-                    //чтобы все работало правильно нужно и запрос и имя приводить к нижнему регистру
-                    it.title.lowercase(Locale.getDefault()).contains(newText?.lowercase(Locale.getDefault())?:"")//не уверен что так правлильно с элвисом но что поделать
-                }
-                filmsAdapter.addItems(result)
-                return true
-            }
 
-        })
+            })
 
         //Благодря использованию ViewDataBinding нажняя строчка больше не используется
         //val mainRecycler = view.findViewById<RecyclerView>(R.id.main_recycler_view)
 
-        binding.mainRecyclerView.apply {
+        binding.mainRecyclerView.apply()
+        {
 
-            filmsAdapter = FilmListRecyclerAdapter(object: FilmListRecyclerAdapter.OnClickListener {
-                override fun click(film: Film) {
-                    (requireContext() as MainActivity).launchDetailsFragment(film)
-                }
-            })
+            filmsAdapter =
+                FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnClickListener {
+                    override fun click(film: Film) {
+                        (requireContext() as MainActivity).launchDetailsFragment(film)
+                    }
+                })
             adapter = filmsAdapter
 
             layoutManager = LinearLayoutManager(requireContext())

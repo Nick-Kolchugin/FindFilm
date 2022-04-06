@@ -11,8 +11,8 @@ apply plugin: 'kotlin-android-extensions'*/
 @Parcelize
 data class Film(
     val title: String,
-    val poster: Int,
+    val poster: String, //У нас будут приходить ссылки на картинку, так что это будет String
     val description: String,
-    var rating: Float = 0f,
+    var rating: Double = 0.0, //Приходит не целое число
     var isInFavorites: Boolean = false
 ) : Parcelable

@@ -9,7 +9,7 @@ import com.example.findfilm.view.activities.MainActivity
 import com.example.findfilm.view.fragments.HomeFragment
 
 class MainRepository {
-    val filmsDataBase = listOf(
+   /* val filmsDataBase = listOf(
         Film("Shang-Chi and the Legend of the Ten Rings",
             R.drawable.shang_chi_poster, "Shang-Chi, the master of weaponry-based Kung Fu, is forced to confront his past after being drawn into the Ten Rings organization.", 7.0f),
         Film("Free Guy",
@@ -30,5 +30,5 @@ class MainRepository {
             R.drawable.cruella_poster, "A live-action prequel feature film following a young Cruella de Vil.", 7.4f),
         Film("Mortal Combat",
             R.drawable.mortal_kombat_poster, "MMA fighter Cole Young seeks out Earth's greatest champions in order to stand against the enemies of Outworld in a high stakes battle for the universe.", 6.2f),
-    )
+    )*/
 }

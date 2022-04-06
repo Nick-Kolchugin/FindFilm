@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.findfilm.R
+import com.example.findfilm.data.ApiConstants
 import com.example.findfilm.domain.Film
 import com.example.findfilm.view.customviews.RatingDonutView
 
@@ -22,7 +23,7 @@ class FilmViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemV
         //Указываем контейнер в котором будет "жить" наша картинка
         Glide.with(itemView)
         //Загружаем сам ресурс
-            .load(film.poster)
+            .load(ApiConstants.IMAGES_URL + "w342" + film.poster)
         //Центрируем изображение
             .centerCrop()
         //Указываем ImageView куда будем загружать изображение

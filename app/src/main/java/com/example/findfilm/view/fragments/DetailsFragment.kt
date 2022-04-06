@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.findfilm.view.activities.MainActivity
 import com.example.findfilm.R
+import com.example.findfilm.data.ApiConstants
 import com.example.findfilm.databinding.FragmentDetailsBinding
 import com.example.findfilm.domain.Film
 
@@ -47,8 +48,8 @@ class DetailsFragment : Fragment() {
         binding.detailsToolbar.title = film.title
 
         //устанавливаем постер
-        Glide.with(binding.detailsPoster)
-            .load(film.poster)
+        Glide.with(this)
+            .load(ApiConstants.IMAGES_URL + "w780" + film.poster)
             .centerCrop()
             .into(binding.detailsPoster)
 //        poster.setImageResource(film.poster) <- старая реализация добаления картинки
