@@ -20,15 +20,26 @@ class FilmViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemV
 
     fun bind(film: Film){
         title.text = film.title
-        //Указываем контейнер в котором будет "жить" наша картинка
-        Glide.with(itemView)
-        //Загружаем сам ресурс
-            .load(ApiConstants.IMAGES_URL + "w342" + film.poster)
-        //Центрируем изображение
-            .centerCrop()
-        //Указываем ImageView куда будем загружать изображение
-            .into(poster)
+
+        //Проверяем на null постер(буквально в 18.04.2020 появился в базе фильм который был без картинки и приложение рухнуло)
+        if (film.poster != null){
+            //Указываем контейнер в котором будет "жить" наша картинка
+            Glide.with(itemView)
+                //Загружаем сам ресурс
+                .load(ApiConstants.IMAGES_URL + "w342" + film.poster)
+                //Центрируем изображение
+                .centerCrop()
+                //Указываем ImageView куда будем загружать изображение
+                .into(poster)
 //        poster.setImageResource(film.poster) <- старая реализация добавления картинки
+        } else{
+            Glide.with(itemView)
+                .load(R.drawable.ic_round_warning_24)
+                .centerCrop()
+                .into(poster)
+        }
+
+
         description.text = film.description
         //Устанавливаем рейтинг
         ratingDonut.setProgress((film.rating * 10).toInt())

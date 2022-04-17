@@ -48,11 +48,20 @@ class DetailsFragment : Fragment() {
         binding.detailsToolbar.title = film.title
 
         //устанавливаем постер
-        Glide.with(this)
-            .load(ApiConstants.IMAGES_URL + "w780" + film.poster)
-            .centerCrop()
-            .into(binding.detailsPoster)
+        //Проверяем на нул
+        if (film.poster != null) {
+            Glide.with(this)
+                .load(ApiConstants.IMAGES_URL + "w780" + film.poster)
+                .centerCrop()
+                .into(binding.detailsPoster)
 //        poster.setImageResource(film.poster) <- старая реализация добаления картинки
+        } else{
+            Glide.with(this)
+                .load(R.drawable.ic_round_warning_24)
+                .centerCrop()
+                .into(binding.detailsPoster)
+        }
+
 
         //устанавливаем описание
         binding.detailsDescription.text = film.description
@@ -92,7 +101,6 @@ class DetailsFragment : Fragment() {
             //запускаем наше активити
             startActivity(Intent.createChooser(intent, "Share to:"))
         }
-
 
 
     }

@@ -10,7 +10,7 @@ object Converter {
         list?.forEach{
             result.add(Film(
                 title = it.title!!,
-                poster = it.poster_path!!,
+                poster = it.poster_path,
                 description = it.overview!!,
                 rating = it.vote_average!!,
                 isInFavorites = false
