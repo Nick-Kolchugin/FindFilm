@@ -1,16 +1,16 @@
 package com.example.findfilm.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.findfilm.App
 import com.example.findfilm.domain.Film
 import com.example.findfilm.domain.Interactor
-import java.util.concurrent.Executors
+import org.koin.core.KoinComponent
+import org.koin.core.inject
+import org.koin.android.ext.android.inject
 
-class HomeFragmentViewModel : ViewModel() {
-    val filmsListLiveData = MutableLiveData<List<Film>>()
-    private var interactor: Interactor = App.instance.interactor
+class HomeFragmentViewModel : ViewModel(), KoinComponent {
+    val filmsListLiveData : MutableLiveData<List<Film>> = MutableLiveData()
+    private val interactor: Interactor by inject()
 
     init {
         interactor.getFilmsFromApi(1, object : ApiCallback {
