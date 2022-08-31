@@ -8,6 +8,9 @@ import com.example.findfilm.data.TmdbApi
 import com.example.findfilm.di.AppComponent
 import com.example.findfilm.di.DI
 import com.example.findfilm.di.DaggerAppComponent
+import com.example.findfilm.di.modules.DatabaseModule
+import com.example.findfilm.di.modules.DomainModule
+import com.example.findfilm.di.modules.RemoteModule
 import com.example.findfilm.domain.Interactor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -26,7 +29,11 @@ class App : Application() {
         super.onCreate()
         instance = this
         //Создаем компонент
-        dagger = DaggerAppComponent.create()
+        dagger = DaggerAppComponent.builder().apply {
+            remoteModule(RemoteModule())
+            databaseModule(DatabaseModule())
+            domainModule(DomainModule(this@App))
+        }.build()
 
     }
 

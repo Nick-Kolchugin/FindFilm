@@ -44,6 +44,6 @@ object DI {
         }
 
         //Создаем интерактор
-        single{ Interactor(get(), get()) }
+        single{ Interactor(get(), get(), get())}
     }
 }

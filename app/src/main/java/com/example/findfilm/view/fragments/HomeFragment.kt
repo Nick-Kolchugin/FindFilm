@@ -48,6 +48,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //для swipe to refresh
+        initPullToRefresh()
+
         //Благодря использованию ViewDataBinding нажняя строчка больше не используется
         //val homeFragmentRoot = view.findViewById<ConstraintLayout>(R.id.home_fragment_root)
         MainActivity.AnimationHelper.performFragmentCircularRevealAnimation(
@@ -59,6 +62,7 @@ class HomeFragment : Fragment() {
         //подписываемся на изменения ViewModel
         viewModel.filmsListLiveData.observe(viewLifecycleOwner, Observer<List<Film>> {
             filmsDataBase = it
+            filmsAdapter.addItems(it)
         })
 
         /*val listOfFilms = listOf(
@@ -137,6 +141,18 @@ class HomeFragment : Fragment() {
             addItemDecoration(TopSpacingItemDecoration(8))
 
             filmsAdapter.addItems(filmsDataBase)
+        }
+    }
+
+    private fun initPullToRefresh(){
+        //Вешаем слушатель, чтоб выщвался pull to refresh
+        binding.pullToRefresh.setOnRefreshListener {
+            //Чистим адаптер
+            filmsAdapter.clearItems()
+            //Делаем новый запрос фильмов на сервер
+            viewModel.getFilms()
+            //Убираем крутящееся колечко
+            binding.pullToRefresh.isRefreshing = false
         }
     }
 

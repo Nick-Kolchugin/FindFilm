@@ -18,6 +18,10 @@ class HomeFragmentViewModel : ViewModel(), KoinComponent {
 
     init {
         App.instance.dagger.inject(this)
+        getFilms()
+    }
+
+    fun getFilms(){
         interactor.getFilmsFromApi(1, object : ApiCallback {
             override fun onSuccess(films: List<Film>) {
                 filmsListLiveData.postValue(films)

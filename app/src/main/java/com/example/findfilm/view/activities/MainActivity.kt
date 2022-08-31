@@ -97,6 +97,13 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
 
+                R.id.nav_settings ->{
+                    val tag = "settings"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment(fragment?:SettingsFragment(), tag)
+                    true
+                }
+
                 else -> false
             }
         }
@@ -139,7 +146,7 @@ class MainActivity : AppCompatActivity() {
 
     object AnimationHelper {
         //Это переменная для того, чтобы круг проявления расходился именно от иконки меню навигации
-        private const val menuItems = 4
+        private const val menuItems = 5
 
         //В метод у нас приходит 3 параметра:
         //1 - наше rootView, которое одновременно является и контейнером
