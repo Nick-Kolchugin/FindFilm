@@ -29,7 +29,7 @@ class HomeFragmentViewModel : ViewModel(), KoinComponent {
             }
 
             override fun onFailure() {
-                println("!!! failure")
+                filmsListLiveData.postValue(interactor.getFilmsFromDB())
             }
         })
     }
