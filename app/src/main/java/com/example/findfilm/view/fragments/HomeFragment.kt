@@ -11,10 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.findfilm.view.rv_adapters.FilmListRecyclerAdapter
 import com.example.findfilm.view.activities.MainActivity
-import com.example.findfilm.R
 import com.example.findfilm.view.rv_adapters.TopSpacingItemDecoration
 import com.example.findfilm.databinding.FragmentHomeBinding
-import com.example.findfilm.domain.Film
+import com.example.findfilm.data.entity.Film
 import com.example.findfilm.viewmodel.HomeFragmentViewModel
 import java.util.*
 

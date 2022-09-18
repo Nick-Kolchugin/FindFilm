@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment
 import com.example.findfilm.FavoritesDB
 import com.example.findfilm.R
 import com.example.findfilm.databinding.ActivityMainBinding
-import com.example.findfilm.domain.Film
+import com.example.findfilm.data.entity.Film
 import com.example.findfilm.view.fragments.*
 import java.util.concurrent.Executors
 import kotlin.math.hypot

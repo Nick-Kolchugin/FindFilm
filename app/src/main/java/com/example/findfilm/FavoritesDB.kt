@@ -1,6 +1,6 @@
 package com.example.findfilm
 
-import com.example.findfilm.domain.Film
+import com.example.findfilm.data.entity.Film
 
 class FavoritesDB {
 

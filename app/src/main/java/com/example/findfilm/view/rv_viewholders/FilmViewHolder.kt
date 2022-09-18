@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.findfilm.R
 import com.example.findfilm.data.ApiConstants
-import com.example.findfilm.domain.Film
+import com.example.findfilm.data.entity.Film
 import com.example.findfilm.view.customviews.RatingDonutView
 
 class FilmViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemView) {

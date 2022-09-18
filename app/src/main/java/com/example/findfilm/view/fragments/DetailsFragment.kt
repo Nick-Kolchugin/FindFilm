@@ -11,7 +11,7 @@ import com.example.findfilm.view.activities.MainActivity
 import com.example.findfilm.R
 import com.example.findfilm.data.ApiConstants
 import com.example.findfilm.databinding.FragmentDetailsBinding
-import com.example.findfilm.domain.Film
+import com.example.findfilm.data.entity.Film
 
 
 class DetailsFragment : Fragment() {

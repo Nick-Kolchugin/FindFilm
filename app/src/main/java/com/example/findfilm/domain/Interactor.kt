@@ -4,6 +4,7 @@ import com.example.findfilm.data.API
 import com.example.findfilm.data.MainRepository
 import com.example.findfilm.data.PreferenceProvider
 import com.example.findfilm.data.TmdbApi
+import com.example.findfilm.data.entity.Film
 import com.example.findfilm.data.entity.TmdbResultsDto
 import com.example.findfilm.utils.Converter
 import com.example.findfilm.viewmodel.HomeFragmentViewModel
@@ -27,9 +28,7 @@ class Interactor(
                 //При успехе мы вызываем метод передаем onSuccess и в этот коллбэк список фильмов
                 val list = Converter.convertApiListToDtoList(response.body()?.results)
                 //Кладем фильмы в бд
-                list.forEach {
-                    repo.putToDb(film = it)
-                }
+                repo.putToDb(list)
                 callback.onSuccess(list)
                 //println("!!! ${response.body()}")
             }
@@ -41,7 +40,7 @@ class Interactor(
         })
     }
 
-    fun getFilmsFromDB(): List<Film> = repo.getAllFilmsDB()
+    fun getFilmsFromDB(): List<Film> = repo.getAllFromDb()
 
     //Метод для сохранения настроек
     fun saveDefaultCategoryToPreferences(category: String){

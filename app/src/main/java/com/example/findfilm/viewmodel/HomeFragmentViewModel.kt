@@ -3,11 +3,10 @@ package com.example.findfilm.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.findfilm.App
-import com.example.findfilm.domain.Film
+import com.example.findfilm.data.entity.Film
 import com.example.findfilm.domain.Interactor
 import org.koin.core.KoinComponent
-import org.koin.core.inject
-import org.koin.android.ext.android.inject
+import java.util.concurrent.Executors
 import javax.inject.Inject
 
 class HomeFragmentViewModel : ViewModel(), KoinComponent {
@@ -29,7 +28,9 @@ class HomeFragmentViewModel : ViewModel(), KoinComponent {
             }
 
             override fun onFailure() {
-                filmsListLiveData.postValue(interactor.getFilmsFromDB())
+                Executors.newSingleThreadExecutor().execute {
+                    filmsListLiveData.postValue(interactor.getFilmsFromDB())
+                }
             }
         })
     }

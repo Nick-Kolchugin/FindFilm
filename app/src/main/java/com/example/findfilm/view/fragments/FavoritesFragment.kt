@@ -10,7 +10,7 @@ import com.example.findfilm.view.rv_adapters.FilmListRecyclerAdapter
 import com.example.findfilm.view.activities.MainActivity
 import com.example.findfilm.view.rv_adapters.TopSpacingItemDecoration
 import com.example.findfilm.databinding.FragmentFavoritesBinding
-import com.example.findfilm.domain.Film
+import com.example.findfilm.data.entity.Film
 
 class FavoritesFragment : Fragment() {
 
