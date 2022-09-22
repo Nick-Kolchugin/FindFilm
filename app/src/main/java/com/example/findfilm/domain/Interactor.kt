@@ -1,5 +1,6 @@
 package com.example.findfilm.domain
 
+import androidx.lifecycle.LiveData
 import com.example.findfilm.data.API
 import com.example.findfilm.data.MainRepository
 import com.example.findfilm.data.PreferenceProvider
@@ -29,7 +30,7 @@ class Interactor(
                 val list = Converter.convertApiListToDtoList(response.body()?.results)
                 //Кладем фильмы в бд
                 repo.putToDb(list)
-                callback.onSuccess(list)
+                callback.onSuccess()
                 //println("!!! ${response.body()}")
             }
 
@@ -40,7 +41,7 @@ class Interactor(
         })
     }
 
-    fun getFilmsFromDB(): List<Film> = repo.getAllFromDb()
+    fun getFilmsFromDB(): LiveData<List<Film>> = repo.getAllFromDb()
 
     //Метод для сохранения настроек
     fun saveDefaultCategoryToPreferences(category: String){
